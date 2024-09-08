@@ -46,11 +46,11 @@
 
 					</ul>
 
-					<input id="orders_input" name="orders" type="hidden" />
+					
 
 					<ul class="nav navbar-nav navbar-right">
 					<form action="/cart" method="post">
-					
+					<input id="orders_input" name="orders" type="hidden"/>
 					<li> <input id="orders_button" type="submit" class="btn btn-primary btn-lg" value="Cart (...)"/></li>
 					</form> 
 					</ul>
@@ -68,3 +68,17 @@
     </body>
 </html>
 
+<script type="text/javascript">
+$(function() {
+
+  //Js Код ниже который исполнится после загрузки страницы
+  // в поле сверху вставится содержимое localstorage
+
+  //обновить данные отправленные на сервер, localstorage
+  update_orders_input();
+
+  //обновить отображаемое число заказов в корзине
+  update_orders_button()
+});
+
+</script>
