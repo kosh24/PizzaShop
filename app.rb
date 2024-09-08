@@ -1,5 +1,17 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/reloader'
+require 'sinatra/activerecord'
+
+set :database, {adapter: "sqlite3", database: "pizzashop.db"}
+
+
+class Product < ActiveRecord::Base
+end
+
+class Order < ActiveRecord::Base
+end
+
 
 configure do
   enable :sessions
@@ -19,9 +31,12 @@ before '/secure/*' do
   end
 end
 
+
 get '/' do
-  erb 'Can you handle a <a href="/secure/place">secret</a>?'
+	@products = Product.all
+	erb :index
 end
+
 
 get '/login/form' do
   erb :login_form
@@ -41,3 +56,9 @@ end
 get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
+
+get '/about' do
+  erb :about
+end
+
+
